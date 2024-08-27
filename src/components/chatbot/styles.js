@@ -1,131 +1,127 @@
 import styled from 'styled-components';
+import { Button } from 'antd';
 
-export const ChatBox = styled.div`
-  display: none;
-  background: #0F1216;
-  position: fixed;
-  right: 19%;
-  bottom: 25%; /* Ajuste a posição inferior se necessário */
-  height: 60%;
-  width: 27rem;
-  max-width: 85vw;
-  max-height: 80vh; /* Ajuste a altura máxima conforme necessário */
-  border-radius: 5px;
-  /*box-shadow: 0px 3px 16px rgba(0, 0, 0, 0.6);  Opcional: adicionar sombra para melhor visibilidade */
-  &.active {
-    display: block;
-  }
-`;
-
-export const ChatBoxToggle = styled.span`
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  cursor: pointer;
-  font-size: 18px;
-  color: #fff; /* Ajuste a cor do ícone de fechar, se necessário */
-`;
-
-export const ChatBoxBody = styled.div`
-  height: calc(100% - 60px); /* Ajuste a altura para ocupar o espaço disponível dentro do ChatBox */
-  overflow-y: auto; /* Permite rolar o conteúdo se necessário */
+export const ChatbotWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100%;
 `;
 
-export const ChatLogs = styled.div`
-  padding: 15px;
-  flex: 1; /* Permite que o ChatLogs ocupe todo o espaço disponível */
+export const ChatWindow = styled.div`
+  flex-grow: 1;
+  padding: 16px;
+  background-color: #fff;
   overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-`;
+  height: 40rem;
 
-export const ChatMsg = styled.div`
-  display: flex;
-  margin-bottom: 10px;
-  &.self {
-    flex-direction: row-reverse;
-    text-align: right;
+  .bot {
+    text-align: left;
+    margin-bottom: 8px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 8px;
   }
-`;
 
-export const CmMsgText = styled.div`
-  background: ${({ type }) => (type === 'self' ? '#171A1F' : 'none')}; /* Background gray for self messages */
-  padding: 10px 15px;
-  color: white;
-  max-width: 75%;
-  border-radius: 10px;
-  font-size: 14px;
-  font-family: "fire sans", monospace;
-  font-weight: 400;
-  text-align: justify;
+  .user {
+    text-align: right;
+    margin-bottom: 8px;
+    border-color: #003366;
+    background-color: #F6F6F6;
+    border: 1px solid #ddd;
+    width: auto;
+    border-radius: 5px;
+    padding: 8px;
+  }
 `;
 
 export const ChatInput = styled.div`
-  background-color: #181C23;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  bottom: 0;
   position: fixed;
-  right: 14%;
-  bottom: 3rem;
-  width: 25rem;
-  height: 6rem;
-  margin-left: 1.5rem;
-  border: 0.1rem solid #2A2D34;
+  width: 32rem;
+  box-sizing: border-box;
+  z-index: 100;
 
-  form {
-    display: flex;
-    align-items: center;
-    position: relative;
+  @media (max-width: 768px) {
+    max-width: 25rem;
+    }
+`;
+
+export const ChatInputFieldPlusOptions = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+
+    textarea {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 8px;
+    }
   }
 
-  input {
-    flex: 1;
-    border: none; /* Remove a borda do campo de entrada */
-    padding: 10px; /* Ajuste o padding para garantir que o texto não esteja cortado */
-    background: #181C23;
-    color: white;
-    outline: none; /* Remove a borda do foco */
-    
-    &::placeholder {
-      color: #666; /* Ajuste a cor do texto do placeholder se necessário */
+  @media (min-width: 769px) {
+    textarea {
+      flex: 1;
+      width: calc(100% - 50px);
+      margin-right: 8px;
     }
   }
 `;
 
-export const ChatSubmit = styled.button`
-  position: fixed;
-  bottom: 3.5rem;
-  right: 6rem;
-  background: transparent;
-  border: none;
-  color: transparent; /* Hides the button text */
-  font-size: 24px;
-  cursor: pointer;
-  padding: 0;
-  img {
-    width: 20px; /* Set the width of the image to 5px */
-    height: auto; /* Maintain aspect ratio */
+
+export const ChatInputButton = styled.div`
+  display: flex;
+  flex-direction: column; 
+  margin-left: auto; 
+`;
+
+export const ButtonStyled = styled(Button)`
+  background-color: #1677FF;
+  border-color: #1677FF;
+  color: white;
+  margin-top: 8px; 
+
+  &:hover {
+    background-color: #36b7b1;
+    border-color: #36b7b1;
   }
 `;
 
-const ScreenOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-  display: ${props => (props.visible ? 'block' : 'none')};
+export const UploadButton = styled(Button)`
+  border-color: #0066CC;
+  color: #0066CC;
+
+  &:hover {
+    border-color: #36b7b1;
+    color: #36b7b1;
+  }
 `;
 
-const SelectionBox = styled.div`
-  position: absolute;
-  border: 2px solid #ffffff;
-  background-color: rgba(255, 255, 255, 0.3);
-  pointer-events: none;
-  display: ${props => (props.visible ? 'block' : 'none')};
+export const ReactionButtons = styled.div`
+  display: flex;
+  margin-top: 8px;
+`;
+
+export const ReactionIcon = styled.div`
+  font-size: 18px;
+  color: #0066CC; 
+  margin: 0 8px;
+
+  &:hover {
+    color: #36b7b1; 
+  }
+`;
+
+export const SwitchContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
 `;
