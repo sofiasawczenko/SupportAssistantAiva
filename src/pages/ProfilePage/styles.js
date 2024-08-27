@@ -7,7 +7,7 @@ export const Container = styled.div`
 
 export const StyledCard = styled(Card)`
   margin-bottom: 20px;
-  width: 28rem;
+  width: 100%;
   font-size: 13.5px;
   font-family: "Fira Sans Condensed", sans-serif;
   background-color: #FAFAFA;

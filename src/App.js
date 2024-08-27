@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Drawer, FloatButton } from 'antd';
 import { CustomerServiceOutlined } from '@ant-design/icons';
-import Chatbot from './components/Chatbot';
+import Chatbot from './components/chatbot';
 import TemplatePage from './pages/TemplatePage';
 import Menu from './components/Menu';
 import TicketForm from './pages/TicketPage';
 import TrainingForm from './pages/Training';
 import ProfilePage from './pages/ProfilePage';
-import { AppWrapper } from './styles';
+import { AppWrapper, StyledDrawer } from './styles';
 import TextSelectionTool from './components/TextSelectionTool';
 import SnippingTool from './components/SnippingTool';
 
@@ -69,6 +69,7 @@ const App = () => {
         onClick={showDrawer}
       />
       <Drawer
+      // <StyledDrawer
         title={<>{getTitle()}</>}
         placement="right"
         onClose={closeDrawer}
@@ -82,6 +83,7 @@ const App = () => {
             {renderContent()}
           </div>
         </div>
+      {/* </StyledDrawer> */}
       </Drawer>
       <div style={{ color: '#00093C', padding: '16px', maxWidth: '800px', margin: '0 auto' }}>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae justo gravida, ac fermentum purus bibendum. Praesent euismod lorem ut lorem aliquam, at vehicula libero facilisis. Quisque auctor scelerisque justo, eu gravida mauris viverra eget. Mauris tincidunt nisi nec est ultricies, a fermentum elit placerat. Curabitur vehicula nisi a est dapibus, id dignissim purus efficitur. Fusce varius nisi et lacus tincidunt, a fermentum arcu cursus. Donec non convallis sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
