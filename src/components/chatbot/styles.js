@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Button } from 'antd';
+import { Button } from "antd";
+import styled from "styled-components";
 
 export const ChatbotWrapper = styled.div`
   display: flex;
@@ -26,7 +26,7 @@ export const ChatWindow = styled.div`
     text-align: right;
     margin-bottom: 8px;
     border-color: #003366;
-    background-color: #F6F6F6;
+    background-color: #f6f6f6;
     border: 1px solid #ddd;
     width: auto;
     border-radius: 5px;
@@ -48,7 +48,7 @@ export const ChatInput = styled.div`
 
   @media (max-width: 768px) {
     max-width: 25rem;
-    }
+  }
 `;
 
 export const ChatInputFieldPlusOptions = styled.div`
@@ -76,32 +76,36 @@ export const ChatInputFieldPlusOptions = styled.div`
   }
 `;
 
-
 export const ChatInputButton = styled.div`
   display: flex;
-  flex-direction: column; 
-  margin-left: auto; 
+  flex-direction: column;
+  margin-left: auto;
 `;
 
 export const ButtonStyled = styled(Button)`
-  background-color: #1677FF;
-  border-color: #1677FF;
-  color: white;
-  margin-top: 8px; 
+  && {
+    background-color: #44d4c6;
+    border-color: #44d4c6;
+    color: black;
+    font-weight: 600;
+    margin-top: 8px;
 
-  &:hover {
-    background-color: #36b7b1;
-    border-color: #36b7b1;
+    &:hover {
+      background-color: #44d4c6;
+      border-color: #44d4c6;
+    }
   }
 `;
 
 export const UploadButton = styled(Button)`
-  border-color: #0066CC;
-  color: #0066CC;
+  border-color: #44d4c6;
+  color: #44d4c6;
+  background-color: #101216;
 
   &:hover {
-    border-color: #36b7b1;
-    color: #36b7b1;
+    border-color: #44d4c6;
+    color: #44d4c6;
+    background-color: #fff;
   }
 `;
 
@@ -112,11 +116,11 @@ export const ReactionButtons = styled.div`
 
 export const ReactionIcon = styled.div`
   font-size: 18px;
-  color: #0066CC; 
+  color: #0066cc;
   margin: 0 8px;
 
   &:hover {
-    color: #36b7b1; 
+    color: #36b7b1;
   }
 `;
 

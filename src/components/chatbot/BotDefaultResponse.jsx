@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { Select, Space, message } from 'antd';
-import styled from 'styled-components';
-import { CopyOutlined, LikeOutlined, DislikeOutlined } from '@ant-design/icons';
+import { CopyOutlined, DislikeOutlined, LikeOutlined } from "@ant-design/icons";
+import { Select, Space, message } from "antd";
+import React, { useState } from "react";
+import styled from "styled-components";
 
 const ResponseWrapper = styled.div`
-  color: #000000;
+  color: #44d4c6;
   font-size: 0.9rem;
-  font-family: 'Fira Sans Condensed', sans-serif;
+  font-family: "Fira Sans Condensed", sans-serif;
   margin-top: 10px;
   line-height: 1.6;
   text-align: justify;
 
   p {
     margin: 10px 0;
-    color: #000000;
+    color: #44d4c6;
   }
 
   strong {
@@ -24,15 +24,16 @@ const ResponseWrapper = styled.div`
 const TemplateResponse = styled.div`
   color: #000000;
   font-size: 0.9rem;
-  font-family: 'Fira Sans Condensed', sans-serif;
+  font-family: "Fira Sans Condensed", sans-serif;
   margin-top: 20px;
-  background-color: #f5f5f5;
+  background-color: #101216;
   border-radius: 5px;
-  border: 1px solid #ddd;
+  border: 1px solid #101216;
   padding: 15px;
-  position: relative; 
+  position: relative;
   margin-bottom: 20px;
   padding-top: 35px;
+  color: #44d4c6;
 `;
 
 const SelectInstruction = styled.p`
@@ -42,9 +43,9 @@ const SelectInstruction = styled.p`
   margin-top: 20px;
   padding: 10px;
   border-radius: 4px;
-  background: #eff4fd;
-  margin-bottom: 20px; 
-  border: 1px solid #ddd;
+  background: #101216;
+  margin-bottom: 20px;
+  border: 1px solid #44d4c6;
 `;
 
 const CopyIcon = styled(CopyOutlined)`
@@ -54,11 +55,11 @@ const CopyIcon = styled(CopyOutlined)`
   font-size: 16px;
   cursor: pointer;
   color: #8b8b8b;
-  background-color: #f1f1f1;
-  margin-bottom: 30px; 
+  background-color: #101216;
+  margin-bottom: 30px;
 
   &:hover {
-    color: #0066CC;
+    color: #44d4c6;
   }
 `;
 
@@ -70,12 +71,12 @@ const FeedbackWrapper = styled.div`
 
 const FeedbackIcon = styled.div`
   font-size: 16px;
-  color: ${props => props.isActive ? '#0066CC' : '#8b8b8b'};
+  color: ${(props) => (props.isActive ? "#44d4c6" : "#101216")};
   cursor: pointer;
   margin-left: 10px;
 
   &:hover {
-    color: #0066CC;
+    color: #44d4c6;
   }
 `;
 
@@ -84,7 +85,7 @@ const handleChange = (value) => {
 };
 
 const BotDefaultResponse = () => {
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState("");
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
 
@@ -94,11 +95,14 @@ const BotDefaultResponse = () => {
   };
 
   const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text).then(() => {
-      message.success('Texto copiado para a área de transferência!');
-    }).catch((err) => {
-      message.error('Falha ao copiar o texto.');
-    });
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        message.success("Texto copiado para a área de transferência!");
+      })
+      .catch((err) => {
+        message.error("Falha ao copiar o texto.");
+      });
   };
 
   const templateText = `
@@ -124,19 +128,29 @@ const BotDefaultResponse = () => {
   };
 
   return (
-    <ResponseWrapper>
-      <p><strong>Resposta</strong>:</p>
+    <ResponseWrapper st>
       <p>
-        Para realizar a alteração de acesso no sistema, é preciso seguir alguns passos. Primeiro envie ao usuário a seguinte lista de
-        informações que você precisará para alterar o acesso dele.
+        <strong>Resposta</strong>:
       </p>
-      <p>1.<strong> Nome completo do usuário.</strong></p>
-      <p>2.<strong> O tipo de alteração de acesso.</strong></p>
-      <p>3.<strong> Se há chamado aberto com autorização dos responsáveis.</strong></p>
+      <p>
+        Para realizar a alteração de acesso no sistema, é preciso seguir alguns
+        passos. Primeiro envie ao usuário a seguinte lista de informações que
+        você precisará para alterar o acesso dele.
+      </p>
+      <p>
+        1.<strong> Nome completo do usuário.</strong>
+      </p>
+      <p>
+        2.<strong> O tipo de alteração de acesso.</strong>
+      </p>
+      <p>
+        3.
+        <strong> Se há chamado aberto com autorização dos responsáveis.</strong>
+      </p>
       <p>
         Para localidades Anápolis/Brainfarma, é preciso de documentação técnica.
       </p>
-      
+
       <SelectInstruction>
         Selecione o template disponível no menu abaixo:
       </SelectInstruction>
@@ -144,20 +158,23 @@ const BotDefaultResponse = () => {
       <Space wrap>
         <Select
           defaultValue="Selecione um Template"
-          style={{ width: 300 }}
+          style={{ width: 300, backgroundColor: "#101216", color: "#44d4c6" }}
           onChange={handleSelectChange}
           options={[
-            { value: 'Bloquear Acesso', label: 'Bloquear Acesso' },
-            { value: 'Remover Acesso', label: 'Remover Acesso' },
-            { value: 'Adicionar a grupo', label: 'Adicionar a grupo' },
+            { value: "Bloquear Acesso", label: "Bloquear Acesso" },
+            { value: "Remover Acesso", label: "Remover Acesso" },
+            { value: "Adicionar a grupo", label: "Adicionar a grupo" },
           ]}
         />
       </Space>
 
-      {selectedOption === 'Adicionar a grupo' && (
+      {selectedOption === "Adicionar a grupo" && (
         <TemplateResponse>
           <CopyIcon onClick={() => copyToClipboard(templateText)} />
-          <p>Olá, [Nome]! Vou te passar um passo a passo para que você mesmo possa realizar a alteração no sistema SAP. Veja como proceder:</p>
+          <p>
+            Olá, [Nome]! Vou te passar um passo a passo para que você mesmo
+            possa realizar a alteração no sistema SAP. Veja como proceder:
+          </p>
           <p>
             1.<strong> Fala login no SAP.</strong>
           </p>
@@ -171,29 +188,23 @@ const BotDefaultResponse = () => {
             4.<strong> Selecione seu nome e vá para “Editar Usuário”.</strong>
           </p>
           <p>
-            5.<strong> Em “Pertence aos grupos”, marque o grupo desejado.</strong>
+            5.
+            <strong> Em “Pertence aos grupos”, marque o grupo desejado.</strong>
           </p>
           <p>
             6.<strong> Na aba “Atribuições”, escolha o novo acesso.</strong>
           </p>
           <p>
-            7.<strong> Salve as alterações em “Ação > Salvar Usuário”.</strong>
+            7.
+            <strong>Salve as alterações em “Ação {">"} Salvar Usuário”.</strong>
           </p>
-          <p>
-            Muito obrigado! Fico à disposição para qualquer dúvida.
-          </p>
+          <p>Muito obrigado! Fico à disposição para qualquer dúvida.</p>
 
           <FeedbackWrapper>
-            <FeedbackIcon
-              isActive={liked}
-              onClick={handleLike}
-            >
+            <FeedbackIcon isActive={liked} onClick={handleLike}>
               <LikeOutlined />
             </FeedbackIcon>
-            <FeedbackIcon
-              isActive={disliked}
-              onClick={handleDislike}
-            >
+            <FeedbackIcon isActive={disliked} onClick={handleDislike}>
               <DislikeOutlined />
             </FeedbackIcon>
           </FeedbackWrapper>
