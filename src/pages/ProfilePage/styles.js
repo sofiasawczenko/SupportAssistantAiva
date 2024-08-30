@@ -64,14 +64,14 @@ export const StyledCollapse = styled(Collapse)`
   }
 
   .ant-collapse-header {
-    background-color: #1b1b1b;
+    background-color: #D8D8D8;
     color: black;
     font-family: 'Fira Sans Condensed', sans-serif;
     font-size: 14px;
   }
 
   .ant-collapse-content {
-    background-color: #e3e3e3;
+    background-color: #E9E9E9;
     color: white;
   }
 `;

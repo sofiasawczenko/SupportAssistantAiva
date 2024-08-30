@@ -50,7 +50,7 @@ const ProfilePage = () => {
 
       <StyledCollapse defaultActiveKey={[]} onChange={handleCollapseChange}>
         <Panel
-          header={<span style={{ color: '#b6b6b6', fontFamily: 'Fira Sans Condensed' }}>Estatísticas</span>}
+          header={<span style={{ color: 'black', fontFamily: 'Fira Sans Condensed' }}>Estatísticas</span>}
           key="1"
         >
           <Row gutter={10}>
@@ -88,7 +88,7 @@ const ProfilePage = () => {
         </Panel>
 
         <Panel
-          header={<span style={{ color: '#b6b6b6', fontFamily: 'Fira Sans Condensed' }}>Frequência de Perguntas</span>}
+          header={<span style={{ color: 'black', fontFamily: 'Fira Sans Condensed' }}>Frequência de Perguntas</span>}
           key="2"
         >
           {Object.keys(user.questionsFrequency).map(topic => (
@@ -102,7 +102,7 @@ const ProfilePage = () => {
         </Panel>
 
         <Panel
-          header={<span style={{ color: '#b6b6b6', fontFamily: 'Fira Sans Condensed' }}>Templates Salvos</span>}
+          header={<span style={{ color: 'black', fontFamily: 'Fira Sans Condensed' }}>Templates Salvos</span>}
           key="3"
         >
           <List
@@ -120,7 +120,7 @@ const ProfilePage = () => {
         </Panel>
 
         <Panel
-          header={<span style={{ color: '#b6b6b6', fontFamily: 'Fira Sans Condensed' }}>Tickets Salvos</span>}
+          header={<span style={{ color: 'black', fontFamily: 'Fira Sans Condensed' }}>Tickets Salvos</span>}
           key="4"
         >
           <List
