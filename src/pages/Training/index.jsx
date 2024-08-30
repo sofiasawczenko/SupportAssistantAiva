@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { Container, TitleContainer, StyledText, StyledSubText } from './styles';
-import { message, Card, Space, Form, Input, Upload, Button, Checkbox, Divider, Tooltip } from 'antd';
+import { message, Card, Space, Form, Upload, Button, Checkbox, Divider, Tooltip } from 'antd';
 import { UploadOutlined, QuestionCircleOutlined, PlayCircleOutlined } from '@ant-design/icons';
-import styled from 'styled-components';
-
-const CustomTooltip = styled(Tooltip)`
-  .ant-tooltip-inner {
-    font-size: 10px; 
-  }
-`;
+import {
+  Container,
+  TitleContainer,
+  StyledText,
+  StyledSubText,
+  HoverButton,
+  StyledInput,
+  StyledTextArea,
+  CustomTooltip
+} from './styles';
 
 const TrainingForm = () => {
   const [form] = Form.useForm();
@@ -16,7 +18,7 @@ const TrainingForm = () => {
   const [response, setResponse] = useState('');
   const [enableFeedback, setEnableFeedback] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
-  const [loading, setLoading] = useState(false); // Add state for loading
+  const [loading, setLoading] = useState(false);
 
   const handleChatSubmit = () => {
     if (!chatMessage) {
@@ -28,11 +30,18 @@ const TrainingForm = () => {
   };
 
   const handleSendModel = () => {
-    setLoading(true); 
+    setLoading(true);
     form
       .validateFields()
       .then((values) => {
-        console.log('Model sent with input:', values.trainingName, 'File uploaded:', values.upload, 'Enable feedback:', enableFeedback);
+        console.log(
+          'Model sent with input:',
+          values.trainingName,
+          'File uploaded:',
+          values.upload,
+          'Enable feedback:',
+          enableFeedback
+        );
         messageApi.success('Base de Dados atualizada com sucesso!');
       })
       .catch((errorInfo) => {
@@ -79,7 +88,7 @@ const TrainingForm = () => {
         <Form.Item
           label={
             <StyledText strong>
-              Nome do Treinamento 
+              Nome do Treinamento
               <CustomTooltip title="Insira o nome do treinamento.">
                 <QuestionCircleOutlined style={{ marginLeft: 8, color: 'gray' }} />
               </CustomTooltip>
@@ -88,19 +97,15 @@ const TrainingForm = () => {
           name="trainingName"
           rules={[{ required: true, message: 'Por favor, insira o nome do treinamento' }]}
         >
-          <Input placeholder="Digite o nome do treinamento" />
+          <StyledInput placeholder="Digite o nome do treinamento" />
         </Form.Item>
 
         <Form.Item
-          label={
-            <StyledText strong>
-              Descrição do Treinamento
-            </StyledText>
-          }
+          label={<StyledText strong>Descrição do Treinamento</StyledText>}
           name="trainingDescription"
           rules={[{ required: true, message: 'Por favor, insira a descrição do treinamento' }]}
         >
-          <Input.TextArea rows={4} placeholder="Digite a descrição do treinamento" />
+          <StyledTextArea rows={4} placeholder="Digite a descrição do treinamento" />
         </Form.Item>
 
         <Divider />
@@ -108,7 +113,7 @@ const TrainingForm = () => {
         <Form.Item
           label={
             <StyledText strong>
-              Enviar Arquivo 
+              Enviar Arquivo
               <CustomTooltip title="Aceita .log, .txt, .png, .jpg de até 10MB para logs e 5MB para capturas de tela.">
                 <QuestionCircleOutlined style={{ marginLeft: 8, color: 'gray' }} />
               </CustomTooltip>
@@ -126,22 +131,30 @@ const TrainingForm = () => {
           <p><StyledText>Instruções para Envio:</StyledText></p>
           <ul>
             <StyledSubText>
-              <li><strong>Arquivo:</strong> Faça o upload do arquivo de logs do sistema gerado durante a ocorrência do erro ou capturas de tela que recriam o erro. Certifique-se de que o arquivo contenha informações detalhadas sobre a falha.</li>
+              <li>
+                <strong>Arquivo:</strong> Faça o upload do arquivo de logs do sistema gerado durante a ocorrência do erro ou capturas de tela que recriam o erro. Certifique-se de que o arquivo contenha informações detalhadas sobre a falha.
+              </li>
             </StyledSubText>
           </ul>
         </div>
 
         <Form.Item>
-          <Button type="primary" onClick={handleSendModel} loading={loading}><PlayCircleOutlined />
+          <HoverButton
+            type="Dashed"
+            icon={<PlayCircleOutlined />}
+            onClick={handleSendModel}
+            loading={loading}
+          >
             Executar Treinamento
-          </Button>
+          </HoverButton>
         </Form.Item>
-        <Divider />
+
+        <Divider style={{ backgroundColor: '#6e6e6e', borderColor: '#a8a8a8' }} />
 
         <Form.Item
           label={
             <StyledText strong>
-              Testar Modelo 
+              Testar Modelo
               <CustomTooltip title="Digite uma mensagem para testar o modelo de IA.">
                 <QuestionCircleOutlined style={{ marginLeft: 8, color: 'gray' }} />
               </CustomTooltip>
@@ -149,7 +162,7 @@ const TrainingForm = () => {
           }
           name="chatMessage"
         >
-          <Input.TextArea
+          <StyledTextArea
             rows={6}
             value={chatMessage}
             onChange={(e) => setChatMessage(e.target.value)}
@@ -159,31 +172,44 @@ const TrainingForm = () => {
 
         {response && (
           <Space direction="vertical" style={{ width: '100%' }}>
-            <Card title="Resposta do Modelo" style={{ marginBottom: '1.5rem', fontFamily: "Fira Sans Condensed", backgroundColor: '#e8e8e867', color: '#060606' }}>
+            <Card
+              title="Resposta do Modelo"
+              style={{
+                borderColor: '#1FB8A9',
+                marginBottom: '1.5rem',
+                fontFamily: "Fira Sans Condensed",
+                backgroundColor: '#585858',
+                color: '#060606'
+              }}
+            >
               <StyledText>{response}</StyledText>
             </Card>
           </Space>
         )}
 
         <Form.Item>
-          <Button type='default' onClick={handleChatSubmit}>
+          <Button type="default" onClick={handleChatSubmit}>
             Avaliar
           </Button>
         </Form.Item>
 
-        <Divider />
+        <Divider style={{ backgroundColor: '#6e6e6e', borderColor: '#a8a8a8' }} />
 
         <Form.Item>
           <Checkbox checked={enableFeedback} onChange={() => setEnableFeedback(!enableFeedback)}>
             <StyledText>Habilitar Feedback dos Usuários</StyledText>
           </Checkbox>
         </Form.Item>
-        
-        
+
         <Form.Item>
-          <Button type="primary" onClick={handleSendModel}><PlayCircleOutlined />
+          <HoverButton
+            type="Dashed"
+            icon={<PlayCircleOutlined />}
+            onClick={handleSendModel}
+            loading={loading}
+          >
             Atualizar Base de Dados da AIVA
-          </Button>
+          </HoverButton>
         </Form.Item>
       </Form>
     </Container>

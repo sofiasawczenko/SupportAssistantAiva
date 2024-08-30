@@ -62,9 +62,9 @@ class SnippingTool extends React.Component {
             <Button
               type="primary"
               onClick={onStartCapture}
-              style={{ marginTop: '10px' }} 
+              style={{ background: '#44D4C6', color: 'black', marginTop: '10px' }} 
             >
-              Capture
+              Capturar
             </Button>
             <div style={{ marginTop: '10px' }}>
               {screenCapture && (

@@ -9,13 +9,15 @@ const TextSelectionTool = ({ onTextSelect }) => {
   const handleMouseUp = () => {
     const selection = window.getSelection();
     const text = selection.toString();
+
     if (text) {
       setSelectedText(text);
       const range = selection.getRangeAt(0);
       const rect = range.getBoundingClientRect();
+
       setButtonPosition({
-        top: rect.top + window.scrollY - 40, // Posiciona acima da seleção (ajuste conforme necessário)
-        left: rect.left + window.scrollX + (rect.width / 2) // Centraliza o botão horizontalmente em relação ao texto
+        top: rect.top + window.scrollY - 40,
+        left: rect.left + window.scrollX + rect.width / 2
       });
       setShowButton(true);
     } else {
@@ -31,29 +33,27 @@ const TextSelectionTool = ({ onTextSelect }) => {
 
   useEffect(() => {
     document.addEventListener('mouseup', handleMouseUp);
-    return () => document.removeEventListener('mouseup', handleMouseUp);
+    return () => {
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
   }, []);
 
-  return (
-    <>
-      {showButton && (
-        <Button
-          onClick={handleSendToChatbot}
-          style={{
-            borderColor: '#0066CC',
-            color: '#0066CC',
-            position: 'fixed',
-            top: `${buttonPosition.top}px`,
-            left: `${buttonPosition.left}px`,
-            transform: 'translateX(-50%)', // Centraliza o botão horizontalmente
-            zIndex: 1000 // Garante que o botão fique acima de outros elementos
-          }}
-        >
-          Enviar Texto ao Chatbot
-        </Button>
-      )}
-    </>
-  );
+  return showButton ? (
+    <Button
+      onClick={handleSendToChatbot}
+      style={{
+        borderColor: '#0066CC',
+        color: '#0066CC',
+        position: 'fixed',
+        top: `${buttonPosition.top}px`,
+        left: `${buttonPosition.left}px`,
+        transform: 'translateX(-50%)',
+        zIndex: 1000
+      }}
+    >
+      Enviar Texto ao Chatbot
+    </Button>
+  ) : null;
 };
 
 export default TextSelectionTool;

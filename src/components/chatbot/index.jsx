@@ -1,10 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import SnippingTool from '../SnippingTool';
-import TextSelectionTool from '../TextSelectionTool';
-import BotDefaultResponse from './BotDefaultResponse'; 
-import { ChatbotWrapper, ChatWindow, ChatInput, ButtonStyled, UploadButton, ChatInputButton, SwitchContainer, ChatInputFieldPlusOptions, ReactionButtons, ReactionIcon } from './styles';
 import { UploadOutlined, LikeOutlined, DislikeOutlined, SolutionOutlined } from '@ant-design/icons';
-import { Upload, message, Input, Switch, Button, Modal, Tabs, List } from 'antd';
+import { Upload, message, Input, Switch, Modal, List, Button } from 'antd';
+import {
+  StyledTabs,
+  StyledButton,
+  ChatbotWrapper,
+  ChatWindow,
+  ChatInput,
+  ChatInputFieldPlusOptions,
+  CustomTextArea,
+  ChatInputButton,
+  SwitchContainer,
+  ReactionButtons,
+  ReactionIcon,
+  HoverButtonUpload,
+  HoverButtonSend
+} from './styles';
+import BotDefaultResponse from './BotDefaultResponse';
+import TextSelectionTool from '../TextSelectionTool';
 
 const { TextArea } = Input;
 
@@ -12,7 +25,7 @@ const uploadProps = {
   name: 'file',
   action: 'https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload',
   headers: {
-    authorization: 'authorization-text',
+    authorization: 'authorization-text'
   },
   onChange(info) {
     if (info.file.status !== 'uploading') {
@@ -23,7 +36,7 @@ const uploadProps = {
     } else if (info.file.status === 'error') {
       message.error(`${info.file.name} file upload failed.`);
     }
-  },
+  }
 };
 
 const Chatbot = ({ initialMessage }) => {
@@ -32,11 +45,20 @@ const Chatbot = ({ initialMessage }) => {
   ]);
   const [inputValue, setInputValue] = useState('');
   const [historyEnabled, setHistoryEnabled] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false); // Estado para controlar o modal
-  const [messageApi, contextHolder] = message.useMessage(); 
+  const [modalVisible, setModalVisible] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
 
-  const savedTemplates = ['Template remoção de usuário', 'Template alteração de conta', 'Template como desativar SAP'];
-  const communityPrompts = ['Usuário', 'Prompt 2', 'Prompt 3'];
+  const savedTemplates = [
+    'Template remoção de usuário',
+    'Template alteração de conta',
+    'Template como desativar SAP'
+  ];
+
+  const communityPrompts = [
+    'Usuário',
+    'Prompt 2',
+    'Prompt 3'
+  ];
 
   useEffect(() => {
     if (initialMessage) {
@@ -49,16 +71,20 @@ const Chatbot = ({ initialMessage }) => {
 
   const sendMessage = () => {
     if (inputValue.trim()) {
-      setMessages([...messages, { text: inputValue, sender: 'user' }, { text: 'Essa é a resposta padrão do bot.', sender: 'bot' }]);
+      setMessages([
+        ...messages,
+        { text: inputValue, sender: 'user' },
+        { text: 'Essa é a resposta padrão do bot.', sender: 'bot' }
+      ]);
       setInputValue('');
-      showWarningMessage('Já existe um Template respondendo a essa pergunta!'); 
+      showWarningMessage('Já existe um Template respondendo a essa pergunta!');
     }
   };
 
   const showWarningMessage = (content) => {
     messageApi.open({
       type: 'warning',
-      content: content,
+      content
     });
   };
 
@@ -67,7 +93,11 @@ const Chatbot = ({ initialMessage }) => {
   };
 
   const handleSendText = (text) => {
-    setMessages([...messages, { text, sender: 'user' }, { text: 'Essa é a resposta padrão do bot.', sender: 'bot' }]);
+    setMessages([
+      ...messages,
+      { text, sender: 'user' },
+      { text: 'Essa é a resposta padrão do bot.', sender: 'bot' }
+    ]);
   };
 
   const handleSwitchChange = (checked) => {
@@ -86,17 +116,22 @@ const Chatbot = ({ initialMessage }) => {
     setModalVisible(false);
   };
 
+  const handleTextSelect = (text) => {
+    handleSendText(text);
+  };
+
   return (
     <>
-      {contextHolder} 
+      {contextHolder}
       <ChatbotWrapper>
+        <TextSelectionTool onTextSelect={handleTextSelect} />
         <ChatWindow>
           {messages.map((msg, index) => (
             <div key={index} className={msg.sender}>
-              {msg.sender === 'bot' && (
+              {msg.sender === 'bot' ? (
                 <div>
                   {msg.text === 'Olá! Como posso ajudar?' ? (
-                    <p style={{ fontFamily: 'Fira Sans Condensed, sans-serif', marginTop: '-20px', marginBottom: '2px', fontSize: '17px', color: '#000000' }}>
+                    <p style={{ fontFamily: 'Fira Sans Condensed, sans-serif', marginTop: '-20px', marginBottom: '2px', fontSize: '17px', color: 'white' }}>
                       {msg.text}
                     </p>
                   ) : msg.text === 'Essa é a resposta padrão do bot.' ? (
@@ -111,31 +146,32 @@ const Chatbot = ({ initialMessage }) => {
                     </>
                   )}
                 </div>
+              ) : (
+                <p>{msg.text}</p>
               )}
-              {msg.sender === 'user' && <p>{msg.text}</p>}
             </div>
           ))}
         </ChatWindow>
 
         <ChatInput>
           <ChatInputFieldPlusOptions>
-            <TextArea
+            <CustomTextArea
               placeholder="Digite sua mensagem..."
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onPressEnter={sendMessage}
               rows={4}
-
+              style={{ background: '#232323', color: '#CDCDCD' }}
             />
             <SolutionOutlined
-              style={{ position: 'fixed', color: '#1677FF', fontSize: '20px', cursor: 'pointer', marginLeft: '21rem', marginTop: '4rem' }}
+              style={{ position: 'fixed', color: '#1FB8A9', fontSize: '20px', cursor: 'pointer', marginLeft: '21rem', marginTop: '4rem' }}
               onClick={showModal}
             />
             <ChatInputButton>
               <Upload {...uploadProps}>
-                <UploadButton icon={<UploadOutlined />}>Upload</UploadButton>
+                <HoverButtonUpload icon={<UploadOutlined />}>Upload</HoverButtonUpload>
               </Upload>
-              <ButtonStyled onClick={sendMessage}>Enviar</ButtonStyled>
+              <HoverButtonSend onClick={sendMessage}>Enviar</HoverButtonSend>
             </ChatInputButton>
           </ChatInputFieldPlusOptions>
 
@@ -145,63 +181,69 @@ const Chatbot = ({ initialMessage }) => {
             onOk={handleModalOk}
             onCancel={handleModalCancel}
             width={600}
+            footer={[
+              <StyledButton key="ok" type="primary" onClick={handleModalOk}>
+                OK
+              </StyledButton>,
+              <Button key="cancel" onClick={handleModalCancel}>
+                Cancelar
+              </Button>
+            ]}
           >
-            <Tabs defaultActiveKey="1">
-              <Tabs.TabPane tab="Meus Templates" key="1">
+            <StyledTabs defaultActiveKey="1">
+              <StyledTabs.TabPane tab="Meus Templates" key="1">
                 <List
                   bordered
                   dataSource={savedTemplates}
                   renderItem={item => <List.Item>{item}</List.Item>}
                 />
-              </Tabs.TabPane>
-              <Tabs.TabPane tab="Prompts da Comunidade" key="2">
-                <Tabs defaultActiveKey="bug">
-                  <Tabs.TabPane tab="Bug" key="bug">
+              </StyledTabs.TabPane>
+              <StyledTabs.TabPane tab="Prompts da Comunidade" key="2">
+                <StyledTabs defaultActiveKey="bug">
+                  <StyledTabs.TabPane tab="Bug" key="bug">
                     <List
                       bordered
                       dataSource={['Template Bug página fora do ar', 'Template Bug para enviar pedidos']}
                       renderItem={item => <List.Item>{item}</List.Item>}
                     />
-                  </Tabs.TabPane>
-                  <Tabs.TabPane tab="Avisos" key="avisos">
+                  </StyledTabs.TabPane>
+                  <StyledTabs.TabPane tab="Avisos" key="avisos">
                     <List
                       bordered
                       dataSource={['Template Aviso de sistema fora do ar', 'Template Aviso tempo de espera']}
                       renderItem={item => <List.Item>{item}</List.Item>}
                     />
-                  </Tabs.TabPane>
-                  <Tabs.TabPane tab="Usuário" key="usuario">
+                  </StyledTabs.TabPane>
+                  <StyledTabs.TabPane tab="Usuário" key="usuario">
                     <List
                       bordered
                       dataSource={['Template Excluir Usuário', 'Template Usuário inexistente']}
                       renderItem={item => <List.Item>{item}</List.Item>}
                     />
-                  </Tabs.TabPane>
-                  <Tabs.TabPane tab="Acesso" key="acesso">
+                  </StyledTabs.TabPane>
+                  <StyledTabs.TabPane tab="Acesso" key="acesso">
                     <List
                       bordered
                       dataSource={['Template Acesso negado', 'Template Troca de acesso SAP']}
                       renderItem={item => <List.Item>{item}</List.Item>}
                     />
-                  </Tabs.TabPane>
-                </Tabs>
-              </Tabs.TabPane>
-            </Tabs>
+                  </StyledTabs.TabPane>
+                </StyledTabs>
+              </StyledTabs.TabPane>
+            </StyledTabs>
           </Modal>
 
           <SwitchContainer>
-            <Switch 
-              checked={historyEnabled} 
-              onChange={handleSwitchChange} 
+            <Switch
+              checked={historyEnabled}
+              onChange={handleSwitchChange}
               size="small"
-              style={{ marginRight: '8px' }}
+              style={{ marginRight: '8px', backgroundColor: historyEnabled ? '#1FB8A9' : '#b3b3b3' }}
             />
-            <div>
+            <div style={{ color: 'white' }}>
               {historyEnabled ? 'Histórico Ativado' : 'Histórico Desativado'}
-              <TextSelectionTool onTextSelect={handleSendText} />
             </div>
           </SwitchContainer>
-
         </ChatInput>
       </ChatbotWrapper>
     </>

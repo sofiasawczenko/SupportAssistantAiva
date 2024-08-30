@@ -1,9 +1,43 @@
+// src/components/TemplatePage/index.js
 import React, { useState } from 'react';
-import { Input, Dropdown, Menu, message, Button, Form } from 'antd';
+import { message, Button, Form, Menu } from 'antd';
 import { DownOutlined, QuestionCircleOutlined, PlayCircleOutlined, SaveOutlined, ShareAltOutlined } from '@ant-design/icons';
-import { FormWrapper, PromptContainer, GeneratePromptButton, ButtonGroup, CustomLabel, CustomTooltip, ResultTitle, CopyButton, ButtonGroupContainer, TitleContainer, Card as StyledCard } from './styles';
+import {
+  FormWrapper,
+  PromptContainer,
+  GeneratePromptButton,
+  CustomLabel,
+  CustomTooltip,
+  ResultTitle,
+  CopyButton,
+  TitleContainer,
+  StyledTextArea,
+  CustomDropdown,
+  CustomButton,
+  StyledCard,
+  HoverButton
+} from './styles';
 
-const { TextArea } = Input;
+const dropdownMenuStyle = {
+  backgroundColor: '#CDCDCD',
+  color: '#fff',
+};
+
+const itemMenuStyle = {
+  color: 'black',
+};
+
+const dropdownTitleStyle = {
+  backgroundColor: '#131313',
+  color: '#fff',
+  border: 'none',
+  display: 'flex',
+  alignItems: 'center',
+};
+
+const dropdownTitleHoverStyle = {
+  backgroundColor: '#333',
+};
 
 const TemplatePage = () => {
   const [task, setTask] = useState('');
@@ -39,19 +73,19 @@ const TemplatePage = () => {
   };
 
   const toneMenu = (
-    <Menu onClick={({ key }) => setTone(key)}>
-      <Menu.Item key="Formal">Formal</Menu.Item>
-      <Menu.Item key="Informal">Informal</Menu.Item>
-      <Menu.Item key="Amigável">Amigável</Menu.Item>
-      <Menu.Item key="Profissional">Profissional</Menu.Item>
+    <Menu onClick={({ key }) => setTone(key)} style={dropdownMenuStyle}>
+      <Menu.Item key="Formal" style={itemMenuStyle}>Formal</Menu.Item>
+      <Menu.Item key="Informal" style={itemMenuStyle}>Informal</Menu.Item>
+      <Menu.Item key="Amigável" style={itemMenuStyle}>Amigável</Menu.Item>
+      <Menu.Item key="Profissional" style={itemMenuStyle}>Profissional</Menu.Item>
     </Menu>
   );
 
   const formatMenu = (
-    <Menu onClick={({ key }) => setFormat(key)}>
-      <Menu.Item key="Texto">Texto</Menu.Item>
-      <Menu.Item key="Lista">Lista</Menu.Item>
-      <Menu.Item key="Parágrafo">Parágrafo</Menu.Item>
+    <Menu onClick={({ key }) => setFormat(key)} style={dropdownMenuStyle}>
+      <Menu.Item key="Texto" style={itemMenuStyle}>Texto</Menu.Item>
+      <Menu.Item key="Lista" style={itemMenuStyle}>Lista</Menu.Item>
+      <Menu.Item key="Parágrafo" style={itemMenuStyle}>Parágrafo</Menu.Item>
     </Menu>
   );
 
@@ -72,7 +106,7 @@ const TemplatePage = () => {
               </CustomLabel>
             }
           >
-            <TextArea
+            <StyledTextArea
               rows={2}
               value={task}
               onChange={(e) => setTask(e.target.value)}
@@ -90,7 +124,7 @@ const TemplatePage = () => {
               </CustomLabel>
             }
           >
-            <TextArea
+            <StyledTextArea
               rows={4}
               value={context}
               onChange={(e) => setContext(e.target.value)}
@@ -108,11 +142,11 @@ const TemplatePage = () => {
               </CustomLabel>
             }
           >
-            <Dropdown overlay={toneMenu}>
-              <Button>
+            <CustomDropdown overlay={toneMenu} overlayStyle={dropdownMenuStyle} trigger={['click']}>
+              <CustomButton style={dropdownTitleStyle}>
                 {tone} <DownOutlined />
-              </Button>
-            </Dropdown>
+              </CustomButton>
+            </CustomDropdown>
           </Form.Item>
 
           <Form.Item
@@ -125,40 +159,64 @@ const TemplatePage = () => {
               </CustomLabel>
             }
           >
-            <Dropdown overlay={formatMenu}>
-              <Button>
+            <CustomDropdown overlay={formatMenu} overlayStyle={dropdownMenuStyle} trigger={['click']}>
+              <CustomButton style={dropdownTitleStyle}>
                 {format} <DownOutlined />
-              </Button>
-            </Dropdown>
+              </CustomButton>
+            </CustomDropdown>
           </Form.Item>
 
           <Form.Item>
-            <GeneratePromptButton
-              type="primary"
+            <HoverButton
+              type="Dashed"
               icon={<PlayCircleOutlined />}
               onClick={handlePromptSubmit}
             >
               Gerar Prompt
-            </GeneratePromptButton>
+            </HoverButton>
           </Form.Item>
 
           {outputResult && (
-            <StyledCard title={<ResultTitle>Resultado do Prompt <CopyButton onClick={handleCopyToClipboard} /></ResultTitle>} style={{ backgroundColor: '#eeeeee67', color: '#060606', fontFamily: "Fira Sans Condensed", fontSize: '14px' }}>
+            <StyledCard
+              title={
+                <ResultTitle>
+                  Resultado do Prompt
+                  <CopyButton onClick={handleCopyToClipboard} />
+                </ResultTitle>
+              }
+              style={{
+                backgroundColor: '#eeeeee67',
+                color: '#060606',
+                fontFamily: "Fira Sans Condensed",
+                fontSize: '14px',
+              }}
+            >
               {outputResult}
             </StyledCard>
           )}
 
-          <ButtonGroupContainer>
-            <ButtonGroup type="default" onClick={handleSavePrompt}>
-              <SaveOutlined />
+          <Form.Item>
+            <Button
+              type="Dashed"
+              icon={<SaveOutlined />}
+              onClick={handleSavePrompt}
+              style={{
+                marginRight: '1rem',
+                backgroundColor: '#EAEAEA',
+                borderColor: '#EAEAEA',
+                color: 'black',
+              }}
+            >
               Salvar
-            </ButtonGroup>
-
-            <ButtonGroup type="primary" onClick={handlePostPrompt}>
-              <ShareAltOutlined />
+            </Button>
+            <HoverButton
+              type="Dashed"
+              icon={<ShareAltOutlined />}
+              onClick={handlePostPrompt}
+            >
               Publicar
-            </ButtonGroup>
-          </ButtonGroupContainer>
+            </HoverButton>
+          </Form.Item>
         </Form>
       </PromptContainer>
     </FormWrapper>

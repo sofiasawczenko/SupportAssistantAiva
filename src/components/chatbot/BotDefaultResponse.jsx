@@ -4,47 +4,51 @@ import styled from 'styled-components';
 import { CopyOutlined, LikeOutlined, DislikeOutlined } from '@ant-design/icons';
 
 const ResponseWrapper = styled.div`
-  color: #000000;
   font-size: 0.9rem;
   font-family: 'Fira Sans Condensed', sans-serif;
-  margin-top: 10px;
-  line-height: 1.6;
   text-align: justify;
+  background-color: #2b2b2b;
+  color: #e7e7e7;
+`;
 
-  p {
-    margin: 10px 0;
-    color: #000000;
-  }
-
-  strong {
-    font-weight: bold;
-  }
+const AnswerStyle = styled.div`
+  color: #e7e7e7;
+  background-color: #2b2b2b;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-family: 'Fira Sans Condensed', sans-serif;
+  line-height: 1.6;
 `;
 
 const TemplateResponse = styled.div`
-  color: #000000;
+  color: #161616;
   font-size: 0.9rem;
   font-family: 'Fira Sans Condensed', sans-serif;
   margin-top: 20px;
-  background-color: #f5f5f5;
+  background-color: #d8d8d8;
   border-radius: 5px;
-  border: 1px solid #ddd;
+  border: 1px solid #afafaf;
   padding: 15px;
-  position: relative; 
+  position: relative;
   margin-bottom: 20px;
   padding-top: 35px;
+`;
+
+const TemplateText = styled.p`
+  color: #000;
 `;
 
 const SelectInstruction = styled.p`
   font-size: 1rem;
   font-weight: bold;
-  color: #333;
+  color: #0a0a0a;
   margin-top: 20px;
   padding: 10px;
   border-radius: 4px;
-  background: #eff4fd;
-  margin-bottom: 20px; 
-  border: 1px solid #ddd;
+  background: #0d9e90;
+  margin-bottom: 20px;
+  border: 1px solid #414141;
 `;
 
 const CopyIcon = styled(CopyOutlined)`
@@ -53,12 +57,12 @@ const CopyIcon = styled(CopyOutlined)`
   right: 10px;
   font-size: 16px;
   cursor: pointer;
-  color: #8b8b8b;
+  color: #414141;
   background-color: #f1f1f1;
-  margin-bottom: 30px; 
+  margin-bottom: 30px;
 
   &:hover {
-    color: #0066CC;
+    color: #0066cc;
   }
 `;
 
@@ -70,18 +74,14 @@ const FeedbackWrapper = styled.div`
 
 const FeedbackIcon = styled.div`
   font-size: 16px;
-  color: ${props => props.isActive ? '#0066CC' : '#8b8b8b'};
+  color: ${props => (props.isActive ? '#0d9e90' : '#8b8b8b')};
   cursor: pointer;
   margin-left: 10px;
 
   &:hover {
-    color: #0066CC;
+    color: #44d4c6;
   }
 `;
-
-const handleChange = (value) => {
-  console.log(`selected ${value}`);
-};
 
 const BotDefaultResponse = () => {
   const [selectedOption, setSelectedOption] = useState('');
@@ -90,21 +90,18 @@ const BotDefaultResponse = () => {
 
   const handleSelectChange = (value) => {
     setSelectedOption(value);
-    handleChange(value);
   };
 
   const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text).then(() => {
-      message.success('Texto copiado para a área de transferência!');
-    }).catch((err) => {
-      message.error('Falha ao copiar o texto.');
-    });
+    navigator.clipboard.writeText(text)
+      .then(() => message.success('Texto copiado para a área de transferência!'))
+      .catch(() => message.error('Falha ao copiar o texto.'));
   };
 
   const templateText = `
     Olá, [Nome]! Vou te passar um passo a passo para que você mesmo possa realizar a alteração no sistema SAP. Veja como proceder:
-    1. Fala login no SAP.
-    2. Na aba “Administração” e selecione “Acessos”
+    1. Faça login no SAP.
+    2. Na aba “Administração” e selecione “Acessos”.
     3. Clique em “Usuário” e busque pelo seu nome.
     4. Selecione seu nome e vá para “Editar Usuário”.
     5. Em “Pertence aos grupos”, marque o grupo desejado.
@@ -125,18 +122,18 @@ const BotDefaultResponse = () => {
 
   return (
     <ResponseWrapper>
-      <p><strong>Resposta</strong>:</p>
-      <p>
-        Para realizar a alteração de acesso no sistema, é preciso seguir alguns passos. Primeiro envie ao usuário a seguinte lista de
-        informações que você precisará para alterar o acesso dele.
-      </p>
-      <p>1.<strong> Nome completo do usuário.</strong></p>
-      <p>2.<strong> O tipo de alteração de acesso.</strong></p>
-      <p>3.<strong> Se há chamado aberto com autorização dos responsáveis.</strong></p>
-      <p>
-        Para localidades Anápolis/Brainfarma, é preciso de documentação técnica.
-      </p>
-      
+      <AnswerStyle>
+        <p><strong>Resposta:</strong></p>
+        <p>
+          Para realizar a alteração de acesso no sistema, é preciso seguir alguns passos. Primeiro envie ao usuário a seguinte lista de
+          informações que você precisará para alterar o acesso dele.
+        </p>
+        <p><strong>1. Nome completo do usuário.</strong></p>
+        <p><strong>2. O tipo de alteração de acesso.</strong></p>
+        <p><strong>3. Se há chamado aberto com autorização dos responsáveis.</strong></p>
+        <p>Para localidades Anápolis/Brainfarma, é preciso de documentação técnica.</p>
+      </AnswerStyle>
+
       <SelectInstruction>
         Selecione o template disponível no menu abaixo:
       </SelectInstruction>
@@ -157,31 +154,15 @@ const BotDefaultResponse = () => {
       {selectedOption === 'Adicionar a grupo' && (
         <TemplateResponse>
           <CopyIcon onClick={() => copyToClipboard(templateText)} />
-          <p>Olá, [Nome]! Vou te passar um passo a passo para que você mesmo possa realizar a alteração no sistema SAP. Veja como proceder:</p>
-          <p>
-            1.<strong> Fala login no SAP.</strong>
-          </p>
-          <p>
-            2.<strong> Na aba “Administração” e selecione “Acessos”</strong>
-          </p>
-          <p>
-            3.<strong> Clique em “Usuário” e busque pelo seu nome.</strong>
-          </p>
-          <p>
-            4.<strong> Selecione seu nome e vá para “Editar Usuário”.</strong>
-          </p>
-          <p>
-            5.<strong> Em “Pertence aos grupos”, marque o grupo desejado.</strong>
-          </p>
-          <p>
-            6.<strong> Na aba “Atribuições”, escolha o novo acesso.</strong>
-          </p>
-          <p>
-            7.<strong> Salve as alterações em “Ação > Salvar Usuário”.</strong>
-          </p>
-          <p>
-            Muito obrigado! Fico à disposição para qualquer dúvida.
-          </p>
+          <TemplateText>Olá, [Nome]! Vou te passar um passo a passo para que você mesmo possa realizar a alteração no sistema SAP. Veja como proceder:</TemplateText>
+          <TemplateText><strong>1. Faça login no SAP.</strong></TemplateText>
+          <TemplateText><strong>2. Na aba “Administração” e selecione “Acessos”.</strong></TemplateText>
+          <TemplateText><strong>3. Clique em “Usuário” e busque pelo seu nome.</strong></TemplateText>
+          <TemplateText><strong>4. Selecione seu nome e vá para “Editar Usuário”.</strong></TemplateText>
+          <TemplateText><strong>5. Em “Pertence aos grupos”, marque o grupo desejado.</strong></TemplateText>
+          <TemplateText><strong>6. Na aba “Atribuições”, escolha o novo acesso.</strong></TemplateText>
+          <TemplateText><strong>7. Salve as alterações em “Ação > Salvar Usuário”.</strong></TemplateText>
+          <TemplateText>Muito obrigado! Fico à disposição para qualquer dúvida.</TemplateText>
 
           <FeedbackWrapper>
             <FeedbackIcon

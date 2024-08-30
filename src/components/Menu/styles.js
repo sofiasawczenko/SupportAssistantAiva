@@ -4,7 +4,7 @@ export const MenuWrapper = styled.div`
   width: 25px;
   display: flex;
   flex-direction: column;
-  background-color: #2B2B2B; 
+  background-color: #1B1B1B; 
   padding: 16px;
   position: fixed; 
   top: 0;

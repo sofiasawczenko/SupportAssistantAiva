@@ -1,26 +1,48 @@
 import styled from 'styled-components';
-// import { Drawer as AntDrawer } from 'antd';
+import { Button, Drawer as AntDrawer } from 'antd';
 
 export const AppWrapper = styled.div`
   position: relative;
   height: 100vh;
-  background-color: #F2F2F2;
-  height: 100vh; 
-  width: 100vw; 
+  width: 100vw;
+  background-color: #f2f2f2;
   overflow: auto;
-  position: relative; 
   line-height: 1.6;
   text-align: justify;
 `;
 
-// export const StyledDrawer = styled(AntDrawer)`
-//   .ant-drawer-content {
-//     background-color: #3C3F41;
-//   }
-//   .ant-drawer-header {
-//     background-color: #3C3F41; 
-//   }
-//   .ant-drawer-title {
-//     color: #fff; 
-//   }
-// `;
+export const StyledDrawer = styled(AntDrawer)`
+  .ant-drawer-content {
+    background-color: #232323;
+  }
+
+  .ant-drawer-header {
+    background-color: #232323;
+  }
+
+  .ant-drawer-title {
+    color: #2b2b2b;
+  }
+
+  .ant-drawer-close {
+    color: #d3d3d3;
+    background-color: transparent;
+    border: none;
+  }
+
+  .ant-drawer-close:hover {
+    color: #b0b0b0;
+  }
+`;
+
+export const HoverButton = styled(Button)`
+  background-color: #44d4c6;
+  border-color: #44d4c6;
+  color: black;
+
+  &:hover {
+    background-color: #44d4c6;
+    border-color: #44d4c6;
+    color: white;
+  }
+`;

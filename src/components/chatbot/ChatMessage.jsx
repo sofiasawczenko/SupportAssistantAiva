@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const MessageWrapper = styled.div`
-  background-color: ${props => props.sender === 'bot' ? '#fff' : '#f1f1f1'};
+  background-color: ${props => props.sender === 'bot' ? '#414141' : '#383838'};
   border-radius: 8px;
   padding: 8px;
   margin-bottom: 8px;
