@@ -20,6 +20,7 @@ export const FormContainer = styled.div`
   font-size: 1rem;
   color: #333;
   overflow-x: hidden;
+  margin-Top: -2rem;
 `;
 
 export const IconButton = styled.button`

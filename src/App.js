@@ -48,8 +48,8 @@ const App = () => {
   const getTitle = () => {
     const titles = {
       chatbot: 'Assistente de Suporte',
-      form: 'Gerador de Prompt de Comando',
-      ticket: 'Gerador de Ticket',
+      form: 'Novo Template - Gerador de Prompt',
+      ticket: 'Novo Ticket - Gerador de Ticket',
       training: 'Treinamento da Inteligência Artificial',
       profile: 'Meu Perfil'
     };
@@ -68,8 +68,8 @@ const App = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          width: 50,
-          height: 45,
+          width: 70,
+          height: 15,
           backgroundColor: '#D0F8F4'
         }}
         icon={
