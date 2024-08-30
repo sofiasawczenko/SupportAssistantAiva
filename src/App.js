@@ -10,6 +10,7 @@ import TemplatePage from "./pages/TemplatePage";
 import TicketForm from "./pages/TicketPage";
 import TrainingForm from "./pages/Training";
 import { AppWrapper } from "./styles";
+import "./styles.css";
 
 export const defaultColor = {
   backgroundColor: "#101216",

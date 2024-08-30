@@ -2,6 +2,7 @@ import { CopyOutlined, DislikeOutlined, LikeOutlined } from "@ant-design/icons";
 import { Select, Space, message } from "antd";
 import React, { useState } from "react";
 import styled from "styled-components";
+import "./styles.css";
 
 const ResponseWrapper = styled.div`
   color: #44d4c6;
@@ -128,7 +129,7 @@ const BotDefaultResponse = () => {
   };
 
   return (
-    <ResponseWrapper st>
+    <ResponseWrapper>
       <p>
         <strong>Resposta</strong>:
       </p>

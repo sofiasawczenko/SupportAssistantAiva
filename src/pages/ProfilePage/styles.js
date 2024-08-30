@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Card, Statistic, Progress } from 'antd';
+import { Card, Collapse, Progress, Statistic } from "antd";
+import styled from "styled-components";
 
 export const Container = styled.div`
   padding: 20px;
@@ -10,8 +10,14 @@ export const StyledCard = styled(Card)`
   width: 100%;
   font-size: 13.5px;
   font-family: "Fira Sans Condensed", sans-serif;
-  background-color: #FAFAFA;
-  border-color: #D9D9D9;
+  background-color: #101216;
+  border-color: #d9d9d9;
+
+  color: #44d4c6;
+
+  .ant-card-head-title {
+    color: #44d4c6;
+  }
 `;
 
 export const Text = styled.p`
@@ -25,7 +31,7 @@ export const StyledStatistic = styled(Statistic)`
     font-size: 13.5px;
     font-family: "Fira Sans Condensed", sans-serif;
   }
-  
+
   .ant-statistic-content-value {
     font-size: 24px;
   }
@@ -33,9 +39,22 @@ export const StyledStatistic = styled(Statistic)`
 
 export const StyledProgress = styled(Progress)`
   margin-bottom: 10px;
-  
+
   .ant-progress-text {
     font-size: 13.5px;
     font-family: "Fira Sans Condensed", sans-serif;
+    color: #44d4c6 !important;
+  }
+`;
+
+export const StyledPanel = styled(Collapse.Panel)`
+  .ant-collapse-header {
+    background-color: #101216;
+    color: #44d4c6 !important;
+  }
+
+  .ant-collapse-content-box {
+    background-color: #101216;
+    color: #44d4c6;
   }
 `;

@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { Drawer, Button, Tooltip, Card as AntdCard } from 'antd';
-import { CopyOutlined } from '@ant-design/icons';
+import { CopyOutlined } from "@ant-design/icons";
+import { Card as AntdCard, Button, Drawer, Tooltip } from "antd";
+import styled from "styled-components";
 
 export const CustomDrawer = styled(Drawer)`
   .ant-drawer-header {
@@ -9,7 +9,7 @@ export const CustomDrawer = styled(Drawer)`
     text-align: center;
     font-family: "Fira Sans Condensed", sans-serif;
   }
-  
+
   .ant-drawer-body {
     background-color: #fafafa;
     color: #333;
@@ -25,7 +25,7 @@ export const PromptContainer = styled.div`
 
   h1 {
     font-size: 1.5rem;
-    color: #44D4C6;
+    color: #44d4c6;
   }
 
   p {
@@ -34,8 +34,13 @@ export const PromptContainer = styled.div`
 `;
 
 export const GeneratePromptButton = styled(Button)`
-  background-color: #1677FF;
-  color: #fff;
+  background-color: #44d4c6;
+  color: #101216;
+
+  &:hover {
+    background-color: #101216 !important;
+    color: #44d4c6 !important;
+  }
 `;
 
 export const FormWrapper = styled.div`
@@ -68,6 +73,7 @@ export const CustomLabel = styled.span`
   font-weight: bold;
   display: flex;
   align-items: center;
+  color: #44d4c6;
 
   .anticon {
     margin-left: 8px;
@@ -78,13 +84,13 @@ export const CustomLabel = styled.span`
 
 export const CustomTooltip = styled(Tooltip)`
   .ant-tooltip-inner {
-    font-size: 14px; 
+    font-size: 14px;
   }
 `;
 
 export const ResultTitle = styled.div`
-  font-family: "Fira Sans Condensed", sans-serif; 
-  font-size: 16px; 
+  font-family: "Fira Sans Condensed", sans-serif;
+  font-size: 16px;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
@@ -121,7 +127,8 @@ export const TitleContainer = styled.div`
   margin-bottom: 1.8rem;
   padding: 10px;
   border-radius: 4px;
-  background: #eff4fd;
-  margin-bottom: 20px; 
-  border: 1px solid #ddd;
+  background: #101216;
+  margin-bottom: 20px;
+  border: 1px solid #44d4c6;
+  color: #44d4c6;
 `;

@@ -1,15 +1,15 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const MenuWrapper = styled.div`
   width: 25px;
   display: flex;
   flex-direction: column;
-  background-color: #2B2B2B; 
+  background-color: #101216;
   padding: 16px;
-  position: fixed; 
+  position: fixed;
   top: 0;
   right: 0;
-  height: 100vh; 
+  height: 100vh;
 `;
 
 export const IconWrapper = styled.div`
@@ -23,13 +23,12 @@ export const IconWrapper = styled.div`
   }
 
   &:hover .sidebar-icon {
-    color: #40A2FF;
+    color: #40a2ff;
     transform: scale(1.2);
   }
 `;
 
-
 export const MenuTopIcons = styled.div`
   margin-bottom: 25rem;
-  color: #0066CC;
+  color: #0066cc;
 `;
