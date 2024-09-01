@@ -1,11 +1,11 @@
-import styled from 'styled-components';
-import { Button, Drawer as AntDrawer } from 'antd';
+import { Drawer as AntDrawer, Button } from "antd";
+import styled from "styled-components";
 
 export const AppWrapper = styled.div`
   position: relative;
   height: 100vh;
   width: 100vw;
-  background-color: #f2f2f2;
+  background-color: #2b2b2b;
   overflow: auto;
   line-height: 1.6;
   text-align: justify;

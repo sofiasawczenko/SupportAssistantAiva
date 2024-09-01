@@ -1,15 +1,11 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const MenuWrapper = styled.div`
-  width: 25px;
   display: flex;
   flex-direction: column;
-  background-color: #1B1B1B; 
+  background-color: #1b1b1b;
   padding: 16px;
-  position: fixed; 
-  top: 0;
-  right: 0;
-  height: 100vh; 
+  height: 93.6vh;
 `;
 
 export const IconWrapper = styled.div`
@@ -23,13 +19,6 @@ export const IconWrapper = styled.div`
   }
 
   &:hover .sidebar-icon {
-    color: #40A2FF;
     transform: scale(1.2);
   }
-`;
-
-
-export const MenuTopIcons = styled.div`
-  margin-bottom: 25rem;
-  color: #0066CC;
 `;

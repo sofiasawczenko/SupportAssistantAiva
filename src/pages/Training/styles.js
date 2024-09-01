@@ -1,14 +1,14 @@
-import styled from 'styled-components';
-import { Input, Tooltip } from 'antd';
-import { Button as AntButton } from 'antd';
+import { Button as AntButton, Input, Tooltip } from "antd";
+import styled from "styled-components";
 
 export const Container = styled.div`
-  margin: 0 auto;
-  padding: 45px;
   font-size: 1rem;
   color: #333;
-  margin-top: -3rem;
-  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  overflow-y: scroll;
+  padding: 0 1rem;
 `;
 
 export const UploadButton = styled.div`
@@ -84,7 +84,7 @@ export const Label = styled.label`
 `;
 
 export const TitleContainer = styled.div`
-  font-family: 'Fira Sans Condensed', sans-serif;
+  font-family: "Fira Sans Condensed", sans-serif;
   font-size: 13px;
   line-height: 1.3;
   text-align: center;
@@ -97,7 +97,7 @@ export const TitleContainer = styled.div`
 `;
 
 export const StyledText = styled.span`
-  font-family: 'Fira Sans Condensed', sans-serif;
+  font-family: "Fira Sans Condensed", sans-serif;
   color: #e3e3e3;
 `;
 

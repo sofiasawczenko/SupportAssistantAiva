@@ -1,12 +1,12 @@
-import styled from 'styled-components';
-import { RobotOutlined, QuestionCircleOutlined } from '@ant-design/icons';
-import { Form, DatePicker, Menu, Input, Tooltip, Button } from 'antd';
+import { QuestionCircleOutlined, RobotOutlined } from "@ant-design/icons";
+import { Button, DatePicker, Form, Input, Menu, Tooltip } from "antd";
+import styled from "styled-components";
 
 export const StyledIcon = styled(RobotOutlined)`
-  font-size: ${(props) => props.size || '24px'};
-  color: ${(props) => props.color || 'black'};
-  margin: ${(props) => props.margin || '0'};
-  vertical-align: ${(props) => props.align || 'middle'};
+  font-size: ${(props) => props.size || "24px"};
+  color: ${(props) => props.color || "black"};
+  margin: ${(props) => props.margin || "0"};
+  vertical-align: ${(props) => props.align || "middle"};
   cursor: pointer;
 `;
 
@@ -15,12 +15,13 @@ export const FormItemContainer = styled.div`
 `;
 
 export const FormContainer = styled.div`
-  padding: 2rem;
-  margin: 0 auto;
   font-size: 1rem;
+  padding: 0 1rem;
   color: #333;
-  overflow-x: hidden;
-  margin-Top: -2rem;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
 `;
 
 export const IconButton = styled.button`
@@ -150,24 +151,24 @@ export const HoverButton = styled(Button)`
 `;
 
 export const dropdownMenuStyle = {
-  backgroundColor: '#cdcdcd',
-  color: '#fff',
+  backgroundColor: "#cdcdcd",
+  color: "#fff",
 };
 
 export const itemMenuStyle = {
-  color: 'black',
+  color: "black",
 };
 
 export const dropdownTitleStyle = {
-  backgroundColor: '#131313',
-  color: '#fff',
-  border: 'none',
-  display: 'flex',
-  alignItems: 'center',
+  backgroundColor: "#131313",
+  color: "#fff",
+  border: "none",
+  display: "flex",
+  alignItems: "center",
 };
 
 export const dropdownTitleHoverStyle = {
-  backgroundColor: '#333',
+  backgroundColor: "#333",
 };
 
 export const StyledDatePicker = styled(DatePicker)`

@@ -1,18 +1,19 @@
-import styled from 'styled-components';
-import { Input, Button as AntButton, Tabs as AntTabs } from 'antd';
+import { Button as AntButton, Tabs as AntTabs, Input } from "antd";
+import styled from "styled-components";
 
 export const ChatbotWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  justify-content: space-between;
+  height: 500px;
+  width: 100%;
+  padding: 0 1rem;
 `;
 
 export const ChatWindow = styled.div`
-  flex-grow: 1;
-  padding: 16px;
   background-color: #2b2b2b;
   overflow-y: auto;
-  height: 40rem;
+  width: 100%;
   color: white;
 
   .bot {
@@ -20,7 +21,6 @@ export const ChatWindow = styled.div`
     margin-bottom: 8px;
     background-color: #2b2b2b;
     border-radius: 8px;
-    padding: 8px;
   }
 
   .user {
@@ -29,56 +29,31 @@ export const ChatWindow = styled.div`
     background-color: #474747;
     border: 1px solid #1b1b1b;
     border-radius: 5px;
-    padding: 8px;
   }
 `;
 
-export const ChatInput = styled.div`
+export const ChatInput = styled.footer`
   display: flex;
   flex-direction: column;
   padding: 16px;
   background-color: #2b2b2b;
   border-top: 0.1px solid gray;
-  bottom: 0;
-  position: fixed;
-  width: 32rem;
+  width: 100%;
   box-sizing: border-box;
-  z-index: 100;
-
-  @media (max-width: 768px) {
-    max-width: 25rem;
-  }
 `;
 
 export const ChatInputFieldPlusOptions = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  width: 100%;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: stretch;
-
-    textarea {
-      width: 100%;
-      margin-right: 0;
-      margin-bottom: 8px;
-    }
-  }
-
-  @media (min-width: 769px) {
-    textarea {
-      flex: 1;
-      width: calc(100% - 50px);
-      margin-right: 8px;
-    }
-  }
+  gap: 1rem;
 `;
 
 export const ChatInputButton = styled.div`
   display: flex;
-  flex-direction: column;
-  margin-left: auto;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 export const ButtonStyled = styled(AntButton)`
@@ -121,7 +96,8 @@ export const ReactionIcon = styled.div`
 export const SwitchContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 8px;
+  gap: 0.5rem;
+  padding: 0.2rem 1rem;
 `;
 
 export const CustomTextArea = styled(Input.TextArea)`
@@ -153,7 +129,6 @@ export const HoverButtonSend = styled(AntButton)`
   background-color: #44d4c6;
   border-color: #44d4c6;
   color: black;
-  margin-top: 1rem;
 
   &:hover {
     background-color: #44d4c6 !important;

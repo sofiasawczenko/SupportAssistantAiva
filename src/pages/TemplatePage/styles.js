@@ -1,6 +1,14 @@
-import styled from 'styled-components';
-import { Drawer, Button, Input, Tooltip, Card as AntdCard, Dropdown, Menu } from 'antd';
-import { CopyOutlined } from '@ant-design/icons';
+import { CopyOutlined } from "@ant-design/icons";
+import {
+  Card as AntdCard,
+  Button,
+  Drawer,
+  Dropdown,
+  Input,
+  Menu,
+  Tooltip,
+} from "antd";
+import styled from "styled-components";
 
 export const CustomDrawer = styled(Drawer)`
   .ant-drawer-header {
@@ -18,10 +26,14 @@ export const CustomDrawer = styled(Drawer)`
 `;
 
 export const PromptContainer = styled.div`
-  padding: 2rem;
+  padding: 0rem 1rem;
   font-size: 1rem;
   color: #e3e3e3;
-  margin-top: -3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: scroll;
+  height: 500px;
 
   h1 {
     font-size: 1.5rem;
@@ -38,22 +50,8 @@ export const GeneratePromptButton = styled(Button)`
   color: #fff;
 `;
 
-export const FormWrapper = styled.div`
-  padding: 16px;
-
-  form {
-    display: flex;
-    flex-direction: column;
-
-    label {
-      margin-bottom: 12px;
-    }
-  }
-`;
-
 export const ButtonGroup = styled(Button)`
   width: 135px;
-  margin-top: 1rem;
   display: fixed;
 
   &:hover {
@@ -68,9 +66,9 @@ export const CustomLabel = styled.span`
   display: flex;
   align-items: center;
   color: #e3e3e3;
+  gap: 0.3rem;
 
   .anticon {
-    margin-left: 8px;
     font-size: 13px;
     color: gray;
   }
@@ -95,7 +93,6 @@ export const CopyButton = styled(CopyOutlined)`
   cursor: pointer;
   font-size: 16px;
   color: #1890ff;
-  margin-left: 10px;
 
   &:hover {
     color: #40a9ff;
@@ -106,7 +103,6 @@ export const Card = styled(AntdCard)`
   cursor: pointer;
   font-size: 16px;
   color: #1890ff;
-  margin-left: 10px;
 
   &:hover {
     color: #40a9ff;
@@ -118,7 +114,6 @@ export const TitleContainer = styled.div`
   font-size: 13px;
   line-height: 1.3;
   text-align: center;
-  margin-bottom: 20px;
   padding: 10px;
   border-radius: 4px;
   background: #474747;
