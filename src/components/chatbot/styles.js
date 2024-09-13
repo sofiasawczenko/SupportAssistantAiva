@@ -5,15 +5,16 @@ export const ChatbotWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 500px;
+  height: 100vh;
   width: 100%;
   padding: 0 1rem;
 `;
 
 export const ChatWindow = styled.div`
   background-color: #2b2b2b;
-  overflow-y: auto;
+  height: 100%;
   width: 100%;
+  overflow-y: scroll;
   color: white;
 
   .bot {

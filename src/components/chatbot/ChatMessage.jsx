@@ -8,6 +8,7 @@ const MessageWrapper = styled.div`
   padding: 8px;
   max-width: 70%;
   word-wrap: break-word;
+  height: 100%;
 `;
 
 const ChatMessage = ({ type, content }) => {

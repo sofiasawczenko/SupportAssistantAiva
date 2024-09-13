@@ -10,18 +10,16 @@ export const StyledIcon = styled(RobotOutlined)`
   cursor: pointer;
 `;
 
-export const FormItemContainer = styled.div`
-  margin-bottom: 2px;
-`;
-
 export const FormContainer = styled.div`
   font-size: 1rem;
-  padding: 0 1rem;
+  padding: 1rem;
   color: #333;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  height: 500px;
+  justify-content: center;
+  width: 100%;
+  gap: 0.75rem;
 `;
 
 export const IconButton = styled.button`
@@ -29,7 +27,6 @@ export const IconButton = styled.button`
   border: none;
   cursor: pointer;
   font-size: 1.5rem;
-  margin-left: 8px;
   color: #1890ff;
 
   &:hover {
@@ -53,12 +50,10 @@ export const StyledText = styled.span`
 export const TitleContainer = styled.div`
   font-family: "Fira Sans Condensed", sans-serif;
   font-size: 13px;
-  line-height: 1.3;
   text-align: center;
-  margin-bottom: 1.8rem;
-  padding: 10px;
   border-radius: 4px;
   background: #474747;
+  padding: 1rem;
   border: 1px solid #1fb8a9;
   color: #e3e3e3;
 `;
@@ -199,7 +194,6 @@ export const BlackFormItem = styled(Form.Item)`
   background-color: #2b2b2b;
   padding: 1rem;
   border-radius: 4px;
-  margin-bottom: 1rem;
 
   .ant-form-item-label > label {
     color: #e3e3e3;

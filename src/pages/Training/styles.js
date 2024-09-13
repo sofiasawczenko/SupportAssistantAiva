@@ -6,9 +6,9 @@ export const Container = styled.div`
   color: #333;
   display: flex;
   flex-direction: column;
-  height: 500px;
+  height: 100%;
   overflow-y: scroll;
-  padding: 0 1rem;
+  padding: 1rem;
 `;
 
 export const UploadButton = styled.div`

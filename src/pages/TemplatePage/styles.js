@@ -31,9 +31,11 @@ export const PromptContainer = styled.div`
   color: #e3e3e3;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 1rem;
   overflow-y: scroll;
-  height: 500px;
+  height: 100vh;
+  width: 100%;
 
   h1 {
     font-size: 1.5rem;
@@ -114,7 +116,7 @@ export const TitleContainer = styled.div`
   font-size: 13px;
   line-height: 1.3;
   text-align: center;
-  padding: 10px;
+  padding: 1rem;
   border-radius: 4px;
   background: #474747;
   border: 1px solid #1fb8a9;

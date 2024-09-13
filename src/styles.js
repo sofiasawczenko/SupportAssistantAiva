@@ -3,10 +3,8 @@ import styled from "styled-components";
 
 export const AppWrapper = styled.div`
   position: relative;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
   background-color: #2b2b2b;
-  overflow: auto;
   line-height: 1.6;
   text-align: justify;
 `;

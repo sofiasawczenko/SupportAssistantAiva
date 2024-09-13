@@ -4,8 +4,7 @@ export const MenuWrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #1b1b1b;
-  padding: 16px;
-  height: 93.6vh;
+  padding: 1rem;
 `;
 
 export const IconWrapper = styled.div`
