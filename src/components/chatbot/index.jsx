@@ -5,6 +5,7 @@ import {
   UploadOutlined,
 } from "@ant-design/icons";
 import { Button, Input, List, message, Modal, Switch, Upload } from "antd";
+import axios from "axios";
 import React, { useState } from "react";
 import TextSelectionTool from "../TextSelectionTool";
 import BotDefaultResponse from "./BotDefaultResponse";
@@ -44,6 +45,8 @@ const uploadProps = {
   },
 };
 
+const AI_TOKEN = process.env.REACT_APP_API_GEMINI;
+
 const Chatbot = ({ initialMessage }) => {
   const [messages, setMessages] = useState([
     { text: "Olá! Como posso ajudar?", sender: "bot" },
@@ -71,37 +74,38 @@ const Chatbot = ({ initialMessage }) => {
   // }, [initialMessage]);
 
   const sendMessage = async () => {
-    if (inputValue.trim()) {
-      setMessages([
-        ...messages,
-        { text: inputValue, sender: "user" },
-        { text: "Essa é a resposta padrão do bot.", sender: "bot" },
-      ]);
-      setInputValue("");
-    }
-    // const { data } = await axios.post(
-    //   "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyD0UKH66016KKY1-BORlH0Pj7W9M695MK0",
-    //   {
-    //     contents: [
-    //       {
-    //         parts: [
-    //           {
-    //             text: inputValue,
-    //           },
-    //         ],
-    //       },
-    //     ],
-    //   }
-    // );
-    // const [message] = data.candidates;
-    // const [text] = message.content.parts;
-    // setMessages([
-    //   ...messages,
-    //   { text: inputValue, sender: "user" },
-    //   { text: "Essa é a resposta padrão do bot.", sender: "bot" },
-    //   { text: text.text, sender: "bot" },
-    // ]);
-    // console.log(text.text);
+    // if (inputValue.trim()) {
+    //   setMessages([
+    //     ...messages,
+    //     { text: inputValue, sender: "user" },
+    //     { text: "Essa é a resposta padrão do bot.", sender: "bot" },
+    //   ]);
+    //   setInputValue("");
+    // }
+
+    const { data } = await axios.post(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${AI_TOKEN}`,
+      {
+        contents: [
+          {
+            parts: [
+              {
+                text: inputValue,
+              },
+            ],
+          },
+        ],
+      }
+    );
+    const [message] = data.candidates;
+    const [text] = message.content.parts;
+    setMessages([
+      ...messages,
+      { text: inputValue, sender: "user" },
+      { text: text.text, sender: "bot" },
+    ]);
+    setInputValue("");
+    console.log(text.text);
   };
 
   const handleCaptureImage = (imageData) => {
