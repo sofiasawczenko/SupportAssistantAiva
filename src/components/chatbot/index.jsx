@@ -5,10 +5,10 @@ import {
   UploadOutlined,
 } from "@ant-design/icons";
 import { Button, Input, List, message, Modal, Switch, Upload } from "antd";
-import axios from "axios";
 import React, { useState } from "react";
 import TextSelectionTool from "../TextSelectionTool";
 import BotDefaultResponse from "./BotDefaultResponse";
+import { chatSession } from "./geminiApi";
 import {
   ChatbotWrapper,
   ChatInput,
@@ -45,7 +45,11 @@ const uploadProps = {
   },
 };
 
-const AI_TOKEN = process.env.REACT_APP_API_GEMINI;
+function formatText(text) {
+  // Substituir os asteriscos por tags <strong>
+  const formattedText = text.replace(/\*(.*?)\*/g, "<br/><strong>$1</strong>");
+  return { __html: formattedText };
+}
 
 const Chatbot = ({ initialMessage }) => {
   const [messages, setMessages] = useState([
@@ -64,48 +68,21 @@ const Chatbot = ({ initialMessage }) => {
 
   const communityPrompts = ["Usuário", "Prompt 2", "Prompt 3"];
 
-  // useEffect(() => {
-  //   if (initialMessage) {
-  //     setMessages(prevMessages => [
-  //       ...prevMessages,
-  //       { text: initialMessage, sender: 'user' }
-  //     ]);
-  //   }
-  // }, [initialMessage]);
-
   const sendMessage = async () => {
-    // if (inputValue.trim()) {
-    //   setMessages([
-    //     ...messages,
-    //     { text: inputValue, sender: "user" },
-    //     { text: "Essa é a resposta padrão do bot.", sender: "bot" },
-    //   ]);
-    //   setInputValue("");
-    // }
+    if (inputValue.trim()) {
+      const { response } = await chatSession.sendMessage(inputValue);
 
-    const { data } = await axios.post(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${AI_TOKEN}`,
-      {
-        contents: [
-          {
-            parts: [
-              {
-                text: inputValue,
-              },
-            ],
-          },
-        ],
-      }
-    );
-    const [message] = data.candidates;
-    const [text] = message.content.parts;
-    setMessages([
-      ...messages,
-      { text: inputValue, sender: "user" },
-      { text: text.text, sender: "bot" },
-    ]);
-    setInputValue("");
-    console.log(text.text);
+      const botText = response.text();
+
+      const botTextWithoutStart = botText.replace("*", "\n");
+
+      setMessages([
+        ...messages,
+        { text: inputValue, sender: "user" },
+        { text: botTextWithoutStart, sender: "bot" },
+      ]);
+      setInputValue("");
+    }
   };
 
   const handleCaptureImage = (imageData) => {
@@ -165,7 +142,7 @@ const Chatbot = ({ initialMessage }) => {
                     <BotDefaultResponse />
                   ) : (
                     <>
-                      <p>{msg.text}</p>
+                      <p dangerouslySetInnerHTML={formatText(msg.text)} />
                       <ReactionButtons>
                         <ReactionIcon>
                           <LikeOutlined />
