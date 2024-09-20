@@ -3,6 +3,7 @@ import {
   DownOutlined,
   InboxOutlined,
   SaveOutlined,
+  CheckSquareOutlined,
 } from "@ant-design/icons";
 import {
   Button,
@@ -357,28 +358,33 @@ const TicketForm = () => {
         </Form.Item>
 
         <Form.Item>
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          <HoverButton
+            type="primary"
+            // onClick={} // Adicione sua função aqui
+            icon={<CheckSquareOutlined />} // Substitua por um ícone apropriado
           >
-            <HoverButton
-              type="primary"
-              onClick={handleSave}
-              icon={<SaveOutlined />}
-            >
-              Salvar Template
-            </HoverButton>
-            <Button
-              icon={<DownloadOutlined />}
-              onClick={() => handleExport("txt")}
-            >
-              Exportar TXT
-            </Button>
-            <Button
-              icon={<DownloadOutlined />}
-              onClick={() => handleExport("pdf")}
-            >
-              Exportar PDF
-            </Button>
+            Abrir Ticket
+          </HoverButton>
+          <HoverButton
+            type="primary"
+            onClick={handleSave}
+            icon={<SaveOutlined />}
+          >
+            Salvar Template
+          </HoverButton>
+          <Button
+            icon={<DownloadOutlined />}
+            onClick={() => handleExport("txt")}
+          >
+            Exportar TXT
+          </Button>
+          <Button
+            icon={<DownloadOutlined />}
+            onClick={() => handleExport("pdf")}
+          >
+            Exportar PDF
+          </Button>
           </div>
         </Form.Item>
       </Form>

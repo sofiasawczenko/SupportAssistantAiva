@@ -1,20 +1,89 @@
 {
   "manifest_version": 3,
-  "name": "Aiva",
-  "version": "1.0.0",
-  "description": "Uma extensão do Chrome criada com React",
-  "side_panel": {
-    "default_path": "index.html"
+  "name": "Aiva - Chatbot AI Extension",
+  "version": "1.1.0",
+  "description": "Uma extensão do Chrome com chatbot AI e funcionalidades de painel lateral, busca, tradução e exploração de texto.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "contextMenus",
+    "sidePanel",
+    "storage",
+    "tabs",
+    "clipboardWrite"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
   },
   "action": {
-    "default_title": "Click Me"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "faviconAIVA.png",
+      "48": "faviconAIVA.png",
+      "128": "faviconAIVA.png"
+    },
+    "default_title": "Abrir AIVA Assistente"
   },
-  "permissions": [
-    "sidePanel"
-  ],
   "icons": {
     "16": "faviconAIVA.png",
     "48": "faviconAIVA.png",
     "128": "faviconAIVA.png"
-  }
+  },
+  "side_panel": {
+    "default_path": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/*", "popup.html", "index.html", "static/*"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+    "commands": {
+      "_execute_action": {
+        "suggested_key": {
+          "default": "Ctrl+Shift+Y",
+          "mac": "Command+Shift+Y"
+        },
+        "description": "Abrir o Chatbot AIVA"
+      }
+    },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self';",
+    "sandbox": "sandbox allow-scripts; script-src 'self';"
+  },
+  "host_permissions": [
+    "https://www.google.com/",
+    "https://translate.google.com/"
+  ],
+  "context_menus": [
+    {
+      "id": "sendToAIVA",
+      "title": "Enviar para AIVA",
+      "contexts": ["selection"]
+    },
+    {
+      "id": "searchWithGoogle",
+      "title": "Buscar no Google",
+      "contexts": ["selection"]
+    },
+    {
+      "id": "translateText",
+      "title": "Traduzir Texto",
+      "contexts": ["selection"]
+    }
+  ],
+  
+  "sandbox": {
+    "pages": ["sandbox.html"]
+  },
+  "update_url": "https://example.com/updates.json",
+  "minimum_chrome_version": "91"
 }

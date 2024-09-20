@@ -2,7 +2,9 @@ import { Card, Collapse, Progress, Statistic } from "antd";
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 0 2rem;
+  padding: 1rem;
+  position: relative;
+  top: -15rem;
   height: 100vh;
   width: 100%;
   display: flex;

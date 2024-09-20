@@ -112,7 +112,7 @@ const ProfilePage = () => {
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Button
               type="primary"
-              style={{ cursor: 'pointer', marginTop: '16px', width: '50%', backgroundColor: '#1FB8A9', borderColor: '#1FB8A9' }}
+              style={{ cursor: 'pointer', marginTop: '16px', width: '50%', backgroundColor: '#1FB8A9', borderColor: '#1FB8A9' , border: '1px solid black' }}
             >
               Gerenciar Templates
             </Button>
@@ -120,7 +120,7 @@ const ProfilePage = () => {
         </Panel>
 
         <Panel
-          header={<span style={{ color: 'black', fontFamily: 'Fira Sans Condensed' }}>Tickets Salvos</span>}
+          header={<span style={{ color: 'black', fontFamily: 'Fira Sans Condensed' }}>Gerenciar Tickets</span>}
           key="4"
         >
           <List
@@ -130,9 +130,9 @@ const ProfilePage = () => {
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Button
               type="primary"
-              style={{ marginTop: '16px', width: '50%', backgroundColor: '#1FB8A9', borderColor: '#1FB8A9' }}
+              style={{ marginTop: '16px', width: '50%', backgroundColor: '#1FB8A9', borderColor: '#1FB8A9', border: '1px solid black' }}
             >
-              Gerenciar Tickets
+              Status dos Tickets
             </Button>
           </div>
         </Panel>
