@@ -28,7 +28,6 @@ export const CustomDrawer = styled(Drawer)`
 export const PromptContainer = styled.div`
   padding: 1rem;
   position: relative;
-  top: -9rem;
   font-size: 1rem;
   color: #e3e3e3;
   display: flex;
