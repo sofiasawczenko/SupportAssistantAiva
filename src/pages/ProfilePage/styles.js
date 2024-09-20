@@ -4,7 +4,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   padding: 1rem;
   position: relative;
-  top: -15rem;
   height: 100vh;
   width: 100%;
   display: flex;
