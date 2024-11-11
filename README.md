@@ -1,4 +1,4 @@
-Título: **_Sistema de Investimento em Cripto Ativos_**
+Título: **_AIVA - Extensão para Google Chrome_**
 
 Sumário
 
@@ -24,13 +24,11 @@ Sumário
 
 # **Introdução**
 
-O projeto tem como objetivo desenvolver um sistema de software que permita ao Product Owner (PO) Tio Patinhas investir em criptoativos de maneira segura, eficiente e acessível via web. Este documento descreve o escopo do produto, o público-alvo, as dores identificadas e a solução proposta.
+AIVA (Assistente de Inteligência Virtual Avançada) é uma extensão para o Google Chrome que utiliza inteligência artificial para aprimorar a experiência do usuário, oferecendo assistência personalizada e inteligente. AIVA se conecta com o Gemini Studio API para gerar respostas, fornecer insights e ajudar em tarefas diretamente no navegador.
 
 # Público-Alvo
 
-- Investidores individuais e empresariais interessados em criptoativos.
-- Usuário que preferem acessar seus investimentos via web.
-- Indivíduos preocupados com segurança de seus dados financeiros.
+Este projeto foi desenvolvido exclusivamente para colaboradores internos da Softtek, com o objetivo de simplificar tarefas diárias e melhorar a produtividade.
 
 # Dores do PO
 
